@@ -1,5 +1,7 @@
 package com.myapp.spring.model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,25 +10,26 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="springboot_prodcuts")
+@Table(name="springboot_products")
+
 
 public class Product {
 	
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="PRODUCT_ID")
+	@Column(name = "PRODUCT_ID")
 	private Integer productId;
 	
-	@Column(name="PRODUCT_NAME",nullable=false)
+	@Column(name = "PRODUCT_NAME",nullable = false)
 	private String productName;
 	
-	@Column(name="PRODUCT_DESCRIPTION",nullable=false)	
+	@Column(name = "PRODUCT_DESCRIPTION")
 	private String description;
 	
-	@Column(name="PRODUCT_PRICE",nullable=false)
+	@Column(name = "PRODUCT_PRICE")
 	private Double price;
 	
-	@Column(name="PRODUCT_RATING",nullable=false)
+	@Column(name = "PRODUCT_RATING")
 	private Double starRating;
 	
 	public Product() {
@@ -79,6 +82,27 @@ public class Product {
 	public void setStarRating(Double starRating) {
 		this.starRating = starRating;
 	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(description, price, productId, productName, starRating);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Product))
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(description, other.description) && Objects.equals(price, other.price)
+				&& Objects.equals(productId, other.productId) && Objects.equals(productName, other.productName)
+				&& Objects.equals(starRating, other.starRating);
+	}
+	
+	
 	
 	
 
