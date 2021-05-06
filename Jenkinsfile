@@ -34,7 +34,7 @@ sh 'curl -u admin:admin -T target/**.war "http://localhost:7080/manager/text/dep
 }
 
 stage('Smoke') {
-sh "curl --retry-delay 10 --retry 5 http://localhost:7080/ibmdevops/api/v1/products'
+sh "curl --retry-delay 10 --retry 5 http://localhost:7080/ibmdevops/api/v1/products"
 }
 
 
